@@ -1,0 +1,14 @@
+{
+  "name": "myapp",
+  "version": "0.0.1",
+  "main": "myapp.js",
+  "dependencies": {
+    "myapp": "0.0.1"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "myapp@0.0.1",
+  "dist": {
+    "shasum": "1826ff4768aa8254535fa6f3a033ecd955cec0c2"
+  },
+  "_from": "d:\\myapp"
+}
