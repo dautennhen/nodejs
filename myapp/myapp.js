@@ -5,7 +5,7 @@ var _ = require('underscore');
 //var User = require('myapp/User');
 /*--------------------------------------------*/
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/myproject');
+mongoose.connect('mongodb://localhost:27017/dbname');
 var db = mongoose.connection;
 var Schema = mongoose.Schema;
 
@@ -90,13 +90,13 @@ var myapp = {
 			})
 		});
 	},
-  gooUpdateItem : function (model, data, callback) {
+  doUpdateItem : function (model, data, callback) {
 		myapp.open();
     //data =  {like:{}, unlike:{}}
-		itemsModel.findOneAndUpdate( data.unlike, data.like, function (err, user) {
+		itemsModel.findOneAndUpdate( data.like, data.unlike, function (err, item) {
 			if (err)
 				throw err;
-			console.log(user);
+			callback({update:1})
 		});
 	},
   
@@ -109,12 +109,20 @@ var myapp = {
 	},
 	gooDeleteItem : function (data, callback) {
     var data = {
-			name : data.name
+			_id : data.id
 		}
 		myapp.doDeleteItem(itemsModel, data, callback);
 	},
 	gooUpdateItem : function (data, callback) {
-    callback({});
+    var data = {
+      like : { _id : data.id },
+      unlike : {
+        name : data.name,
+        price : data.price,
+        currency : data.price
+      } 
+		}
+    myapp.doUpdateItem(itemsModel, data, callback);
 	},
   
   // Orders
