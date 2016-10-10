@@ -7,9 +7,6 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/myproject');
 var db = mongoose.connection;
 var Schema = mongoose.Schema;
-
-
-
 // create a schema
 var userSchema = new Schema({
   name: String,
